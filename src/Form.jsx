@@ -8,7 +8,7 @@ const Form = () => {
 	const [instructor, setInstructor] = useState("");
 	const [bio, setBio] = useState("");
 	const [emailSignUp, setEmailSignUp] = useState("off");
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 	
 	const updateName = (e) => {
 		const updatedName = e.target.value
@@ -38,12 +38,12 @@ const Form = () => {
 		}
 
 		if (name.length === 0) {
-			nameError = ("Name is required!!!")
-			currentErrors.push("Name is required!!!!!")
+			currentErrors["name"] = "Name is required!"
+			console.log(currentErrors);
 		}
 
 		if (email.length === 0) {
-			currentErrors.push("Email is required!!!!!")
+			currentErrors["email"] = "Email is required!"
 		}
 
 		if (phoneNumber.length !== 0 && phoneNumber[3] !== "-" && phoneNumber[7] !== "-"){
@@ -57,6 +57,8 @@ const Form = () => {
 		if (bio.length > 280) {
 			currentErrors.push("Bio too long!!!!!")
 		}
+		
+		setErrors(currentErrors);
 
 		if (errors.length) {
 			console.log(errors);
@@ -70,7 +72,6 @@ const Form = () => {
 			<form onSubmit={submissionValidation}> 
 				<label> Name
 				<input type="text" name="name" id="name" onChange={(e)=>setName(e.target.value)}></input>
-				<p>{nameError}</p>
 				</label>
 
 				<label for="email"> Email </label>
