@@ -7,12 +7,20 @@ const Form = () => {
 	const [phoneType, setPhoneType] = useState("");
 	const [instructor, setInstructor] = useState("");
 	const [bio, setBio] = useState("");
-	const [emailSignUp, setEmailSignUp] = useState("");
+	const [emailSignUp, setEmailSignUp] = useState("off");
 	console.log(emailSignUp)
 
 	const updateName = (e) => {
 		const updatedName = e.target.value
 		setName(updatedName)
+	}
+
+	const emailSignupStatus = (e) => {
+		if(emailSignUp === "on"){
+			setEmailSignUp("off");
+		} else {
+			setEmailSignUp("on");
+		}
 	}
 	
 	return (
@@ -50,7 +58,7 @@ const Form = () => {
 				</label>
 
 				<label for="email-signup"> Email Signup
-				<input type="checkbox" name="email-signup" id="email-signup" onChange={(e) => setEmailSignUp(e.target.value)}></input>
+				<input type="checkbox" name="email-signup" id="email-signup" onChange={emailSignupStatus}></input>
 				</label>
 				
 				<button type="submit">Submit</button>
