@@ -1,9 +1,16 @@
+import { useState } from "react"
+
 const Form = () => {
+	const [name, setName] = useState("");
+	const updateName = (e) => {
+		const updatedName = e.target.value
+		setName(updatedName)
+	
 	return (
 		<>
-			<form>
+			<form onSubmit={updateFormValue}> 
 				<label> Name
-				<input type="text" name="name" id="name"></input>
+				<input type="text" name="name" id="name" onChange={(e)=>setName(e.target.value)}></input>
 				</label>
 
 				<label for="email"> Email </label>
@@ -32,8 +39,13 @@ const Form = () => {
 				<label for="bio"> Bio
 				<input type="textarea" name="bio" id="bio"></input>
 				</label>
+
+				<label for="email-signup"> Email Signup
+				<input type="checkbox" name="email-signup" id="email-signup"></input>
+				</label>
 				
 				<button type="submit">Submit</button>
+
 			</form>
 		</>
 	)
