@@ -42,6 +42,22 @@ const Form = () => {
 			currentErrors.push("Name is required!!!!!")
 		}
 
+		if (email.length === 0) {
+			currentErrors.push("Email is required!!!!!")
+		}
+
+		if (phoneNumber.length !== 0 && phoneNumber[3] !== "-" && phoneNumber[7] !== "-"){
+			currentErrors.push("Improper telephone format")
+		}
+
+		if ((phoneNumber.length > 0) && (phoneType === "")){
+			currentErrors.push("Must select phone type")
+		}
+
+		if (bio.length > 280) {
+			currentErrors.push("Bio too long!!!!!")
+		}
+
 		if (errors.length) {
 			console.log(errors);
 		} else {
@@ -65,6 +81,7 @@ const Form = () => {
 
 				<label for="phone-type"> Phone Type
 				<select name="phone-type" id="phone-type" onChange={(e) => setPhoneType(e.target.value) }>
+					<option value=""></option>
 					<option value="Home">Home</option>
 					<option value="Work">Work</option>
 					<option value="Mobile">Mobile</option>
