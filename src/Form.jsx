@@ -8,7 +8,8 @@ const Form = () => {
 	const [instructor, setInstructor] = useState("");
 	const [bio, setBio] = useState("");
 	const [emailSignUp, setEmailSignUp] = useState("off");
-	console.log(emailSignUp)
+	const [errors, setErrors] = useState([]);
+
 
 	const updateName = (e) => {
 		const updatedName = e.target.value
@@ -22,10 +23,35 @@ const Form = () => {
 			setEmailSignUp("on");
 		}
 	}
+
+	const submissionValidation = (e) => {
+		e.preventDefault();
+		let currentErrors = errors; 
+
+		const states = {
+			name, 
+			email, 
+			phoneNumber,
+			phoneType, 
+			instructor, 
+			bio, 
+			emailSignUp
+		}
+
+		if (name.length === 0) {
+			currentErrors.push("Name is required!!!!!")
+		}
+
+		if (errors.length) {
+			console.log(errors);
+		} else {
+		console.log(states);
+		}
+	}
 	
 	return (
 		<>
-			<form > 
+			<form onSubmit={submissionValidation}> 
 				<label> Name
 				<input type="text" name="name" id="name" onChange={(e)=>setName(e.target.value)}></input>
 				</label>
